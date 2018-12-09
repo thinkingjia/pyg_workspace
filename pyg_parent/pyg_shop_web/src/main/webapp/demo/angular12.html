@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>深浅克隆</title>
+<script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+<script type="text/javascript">
+
+    var myapp = angular.module('myApp',[]); //定义一个模块
+    myapp.controller("myController",function($scope,$http){  //$scope 是 js和html交互的入口
+         $scope.user1={username:"zhangsan"};
+	   $scope.copyUser=function () {
+           $scope.user2 =$scope.user1 ; //浅刻隆
+           $scope.user2 =JSON.parse( JSON.stringify($scope.user1)) ; //深刻隆
+       }
+    })
+</script>
+</head>
+<body ng-app="myApp" ng-controller="myController"   >  
+  user1的用户名是：{{user1.username}}<br/>
+  <button ng-click="copyUser()">拷贝</button><br/>
+  user2的用户名：<input ng-model="user2.username">
+</body>
+</html>
